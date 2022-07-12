@@ -7,9 +7,8 @@ public class Rectangle {
         this.length = length;
         this.breadth = breadth;
     }
-    public int perimeter(){
+
+    public int perimeter() {
         return 10;
     }
-
-
 }

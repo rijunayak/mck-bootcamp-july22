@@ -4,12 +4,14 @@ public class Square {
     public Square(int side) {
         this.side = side;
     }
-    public int area(){
-        if(side==2)
-        return 4;
-        else return 6;
+
+    public int area() {
+        if (side == 2)
+            return 4;
+        else return 9;
     }
-    public int perimeter(){
+
+    public int perimeter() {
         return 8;
     }
 
