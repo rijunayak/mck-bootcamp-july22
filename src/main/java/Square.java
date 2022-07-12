@@ -9,4 +9,8 @@ public class Square {
     public int area() {
         return this.side*this.side;
     }
+
+    public int perimeter() {
+        return 4 * this.side;
+    }
 }

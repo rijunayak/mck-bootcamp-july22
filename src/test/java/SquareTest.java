@@ -24,5 +24,20 @@ public class SquareTest {
         assertEquals(16,area);
     }
 
-    
+    @Test
+    @DisplayName("Perimeter Eight when side is two")
+
+    public void perimeterEightWhenSideIsTwo(){
+        Square square = new Square(2);
+        int perimeter = square.perimeter();
+        assertEquals(8,perimeter);
+    }
+    @Test
+    @DisplayName("Perimeter sixteen when side is three")
+
+    public void perimeterTwelveWhenSideIsThree(){
+        Square square = new Square(3);
+        int perimeter = square.perimeter();
+        assertEquals(12,perimeter);
+    }
 }
