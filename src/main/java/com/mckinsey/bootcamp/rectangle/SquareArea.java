@@ -1,3 +1,5 @@
+package com.mckinsey.bootcamp.rectangle;
+
 public class SquareArea {
 
     private int side;

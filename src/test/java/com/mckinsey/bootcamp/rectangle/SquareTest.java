@@ -1,3 +1,6 @@
+package com.mckinsey.bootcamp.rectangle;
+
+import com.mckinsey.bootcamp.rectangle.Square;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
