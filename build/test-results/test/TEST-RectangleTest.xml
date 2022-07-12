@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RectangleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-07-12T07:21:58" hostname="GUVA-311277-C02GC48BML87" time="0.015">
+  <properties/>
+  <testcase name="Perimeter should be 14 for length 2 and breadth 5" classname="RectangleTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
