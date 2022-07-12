@@ -14,6 +14,9 @@ public class Length {
 
 
     public boolean equalTo(Length anotherOneMeter) {
-       return true;
+        if(this.magnitude == anotherOneMeter.magnitude && this.unit.equals(anotherOneMeter.unit) ) {
+            return true;
+        }
+        return false;
     }
 }
