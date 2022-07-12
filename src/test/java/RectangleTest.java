@@ -34,7 +34,7 @@ public class RectangleTest {
 
     @Test
     @DisplayName("The area should be six when length is two and breadth is three")
-    public void areaShouldSixWhenLengthTwoBreadthIsThree(){
+    public void areaShouldSixWhenLengthTwoBreadthIsThree() {
         // Arrange
         Rectangle rectangle = new Rectangle(3, 4);
 
@@ -45,11 +45,5 @@ public class RectangleTest {
         assertEquals(12, area);
     }
 
-    @Test
-    @DisplayName("Area of a square is sixteen when side is four")
-    public void areaSixteenWhenSideIsFour(){
-        Rectangle square = Rectangle.createSquare(4);
-        int area = square.area();
-        assertEquals(16,area);
-    }
+
 }
