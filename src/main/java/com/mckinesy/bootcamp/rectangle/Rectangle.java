@@ -1,3 +1,5 @@
+package com.mckinesy.bootcamp.rectangle;
+
 public class Rectangle {
 
     private int length;
