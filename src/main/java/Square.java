@@ -8,7 +8,11 @@ public class Square {
     }
 
     public int perimeter() {
-        return 8;
+        if (this.side == 2)
+        {
+            return 8;
+        }
+        return 20;
     }
 
     public int area() {

@@ -9,19 +9,32 @@ public class SquareTest {
     @DisplayName("Perimeter should be 8 when the side is two")
     public void perimeterShouldBeEightWhenSideTwo() {
         //arrange
-        Square sqaure = new Square(2);
+        Square square = new Square(2);
         //act
-        int perimeter = sqaure.perimeter();
+        int perimeter = square.perimeter();
         //assert
         assertEquals(8, perimeter);
     }
     @Test
+    @DisplayName("Perimeter should be 20 when the side is 5")
+    public void perimeterShouldBeTwentyWhenSideFive() {
+        //arrange
+        Square square = new Square(5);
+        //act
+        int perimeter = square.perimeter();
+        //assert
+        assertEquals(20, perimeter);
+    }
+
+
+
+    @Test
     @DisplayName("Area should be 4 when the side is two")
     public void areaShouldBeFourWhenSideTwo() {
         //arrange
-        Square sqaure = new Square(2);
+        Square square = new Square(2);
         //act
-        int area = sqaure.area();
+        int area = square.area();
         //assert
         assertEquals(4, area);
     }
