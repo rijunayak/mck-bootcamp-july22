@@ -11,6 +11,6 @@ public class Square {
     }
 
     public int perimeter() {
-        return 4 * this.side;
+        return 4 * side;
     }
 }

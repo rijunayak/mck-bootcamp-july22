@@ -24,6 +24,7 @@ public class SquareTest {
         assertEquals(16,area);
     }
 
+
     @Test
     @DisplayName("Perimeter Eight when side is two")
 
