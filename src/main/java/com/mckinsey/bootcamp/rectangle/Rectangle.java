@@ -1,3 +1,5 @@
+package com.mckinsey.bootcamp.rectangle;
+
 public class Rectangle {
     private int length;
 
@@ -6,6 +8,11 @@ public class Rectangle {
     public Rectangle(int length, int breadth){
         this.length = length;
         this.breadth = breadth;
+    }
+
+
+    public static Rectangle createSquare(int side){
+        return new Rectangle(side,side);
     }
 
     public int perimeter(){

@@ -1,3 +1,5 @@
+package com.mckinsey.bootcamp.rectangle;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,11 +24,19 @@ public class SquareTest {
         Assertions.assertEquals(12, perimeter);
     }
 
-//    @DisplayName("Perimeter should be 8 when side is 2")
-//    public void PerimeterShouldBeEightWhenSideIsTwo(){
-//        Square square = new Square(2);
-//        int perimeter = square.perimeter();
-//        Assertions.assertEquals();
-//
-//    }
+    @Test
+    @DisplayName("Area should be sixteen when side is 4")
+    public void areaShouldBeSixteenWhenSideIs4(){
+        Square square = new Square(4)
+
+    }
+    @DisplayName("Perimeter should be 8 when side is 2")
+    public void PerimeterShouldBeEightWhenSideIsTwo(){
+        Square square = new Square(2);
+        int perimeter = square.perimeter();
+        Assertions.assertEquals(8,perimeter);
+
+    }
+
+
 }
