@@ -8,7 +8,6 @@ enum Unit {
     private int conversionFactor;
 
     Unit(int conversionFactor) {
-
         this.conversionFactor = conversionFactor;
     }
 
@@ -48,4 +47,7 @@ public class Length {
         return unit.convertToCentimeter(this.magnitude);
     }
 
+    public Length add(Length other) {
+        return new Length(this.magnitude + other.magnitude, this.unit);
+    }
 }
