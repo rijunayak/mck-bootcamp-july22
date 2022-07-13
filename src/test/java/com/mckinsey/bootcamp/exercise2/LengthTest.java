@@ -4,37 +4,84 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class LengthTest {
     @Test
-    public void OneMeterShouldNotBeEqualToTwoMeters() {
-        //arrange
-        Length oneMeter = new Length(1, "meter");
-        Length twoMeter = new Length(2, "meter");
-        //act
-        boolean result = oneMeter.equals(twoMeter);
-        //assert
-        assertFalse(result);
+    public void oneMetersShouldBeEqualToAnotherOneMeters() {
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length anotherOneMeter = new Length(1, Unit.Meter);
+
+        //boolean comparisonResult = oneMeter.equalTo(anotherOneMeter);
+
+//        boolean comparisonResult = oneMeter.equals(anotherOneMeter);
+//        assertTrue(comparisonResult);
+
+        assertEquals(oneMeter,anotherOneMeter);
     }
 
     @Test
-    public void thousandMetersEqualsToAnotherThousandMeters() {
-        //arrange
-        Length thousandMeter = new Length(1000, "meters");
-        Length anotherThousandMeter = new Length(1000, "meters");
-        //act
-        boolean result = thousandMeter.equals(anotherThousandMeter);
-        //assert
-        assertTrue(result);
+    public void hundredMetersShouldBeEqualToAnotherHundredMeters() {
+        Length hundredMeter = new Length(100, Unit.Meter);
+        Length anotherHundredMeter = new Length(100, Unit.Meter);
+
+        //boolean comparisonResult = hundredMeter.equalTo(anotherHundredMeter);
+//        boolean comparisonResult = hundredMeter.equals(anotherHundredMeter);
+//
+//        assertTrue(comparisonResult);
+
+        assertEquals(hundredMeter,anotherHundredMeter);
     }
 
     @Test
-    public void hundredCentimetersEqualsToOneMeter() {
-        //arrange
-        Length hundredCentimeters = new Length(100, "centimeters");
-        Length oneMeter = new Length(1, "meters");
-        //act
-        boolean result = hundredCentimeters.equals(oneMeter);
-        //assert
-        assertFalse(result);
+    public void hundredMetersShouldBeNotEqualToThousandMeters() {
+        Length hundredMeter = new Length(100, Unit.Meter);
+        Length thousandMeter = new Length(1000, Unit.Meter);
+
+        //boolean comparisonResult = hundredMeter.equalTo(anotherHundredMeter);
+//        boolean comparisonResult = hundredMeter.equals(thousandMeter);
+//
+//        assertFalse(comparisonResult);
+
+        assertNotEquals(hundredMeter,thousandMeter);
     }
+    @Test
+    public void oneKilometerShouldBeEqualToOneThousandMeters() {
+        Length oneKilometer = new Length(1, Unit.Kilometer);
+        Length oneThousandMeters = new Length(1000, Unit.Meter);
+
+        //boolean comparisonResult = oneKilometer.equalTo(anotherHundredMeter);
+//            boolean comparisonResult = oneKilometer.equals(oneThousandMeters);
+//
+//            assertTrue(comparisonResult);
+
+        assertEquals(oneKilometer,oneThousandMeters);
+    }
+
+    @Test
+    public void oneMeterShouldBeEqualToOneHundredCentimeters() {
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length oneHundredCentimeters = new Length(100, Unit.Centimeter);
+
+        //boolean comparisonResult = oneMeter.equalTo(anotherHundredMeter);
+//            boolean comparisonResult = oneMeter.equals(oneHundredCentimeters);
+//
+//            assertTrue(comparisonResult);
+
+        assertEquals(oneMeter,oneHundredCentimeters);
+    }
+
+    @Test
+    public void oneKilometerShouldBeEqualToOneLakhCentimeters() {
+        Length oneKilometer = new Length(1, Unit.Kilometer);
+        Length oneLakhCentimeters = new Length(100000, Unit.Centimeter);
+
+        //boolean comparisonResult = oneKilometer.equalTo(anotherHundredMeter);
+//            boolean comparisonResult = oneKilometer.equals(oneLakhCentimeters);
+//
+//            assertTrue(comparisonResult);
+
+        assertEquals(oneKilometer,oneLakhCentimeters);
+    }
+
+
 }
