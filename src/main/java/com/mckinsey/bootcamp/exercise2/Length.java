@@ -2,8 +2,8 @@ package com.mckinsey.bootcamp.exercise2;
 
 public class Length {
 
-    private int  magnitude;
-    private String unit;
+    private final int magnitude;
+    private final String unit;
 
     public Length(int magnitude, String unit) {
 
@@ -13,10 +13,18 @@ public class Length {
     }
 
 
+    /*
     public boolean equalTo(Length anotherOneMeter) {
-        if(this.magnitude == anotherOneMeter.magnitude && this.unit.equals(anotherOneMeter.unit) ) {
-            return true;
-        }
-        return false;
+
+        return this.magnitude == anotherOneMeter.magnitude && this.unit.equals(anotherOneMeter.unit);
+    }
+    */
+
+
+    @Override
+    public boolean equals(Object anotherObject) {
+        Length anotherLengthObject = (Length) anotherObject;
+
+        return this.magnitude == anotherLengthObject.magnitude;
     }
 }
