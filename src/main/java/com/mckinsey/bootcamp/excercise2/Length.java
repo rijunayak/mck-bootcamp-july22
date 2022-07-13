@@ -1,49 +1,55 @@
 package com.mckinsey.bootcamp.excercise2;
 
+enum Unit {
+    Centimeter(1),
+    Meter(100),
+    Kilometer(100000);
+
+    private int conversionFactor;
+
+    Unit(int conversionFactor) {
+
+        this.conversionFactor = conversionFactor;
+    }
+
+    public int getConversionFactor() {
+        return conversionFactor;
+    }
+
+    int convertToCentimeter(int magnitude) {
+        return magnitude * getConversionFactor();
+    }
+}
+
 public class Length {
 
-    private final int measurement;
-    private final Units unit;
+    private final int magnitude;
+    private final Unit unit;
 
-    enum Units {
-        CentiMeter,
-        Meter,
-        KiloMeter
-    }
-
-    public Length(int measurement, Units unit) {
-        this.measurement = measurement;
+    public Length(int magnitude, Unit unit) {
+        this.magnitude = magnitude;
         this.unit = unit;
     }
+
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(Object anotherObject) {
 
-        Length anotherLength = (Length) other;
+        if (this == anotherObject)
+            return true;
 
-        if(!this.unit.equals(anotherLength.unit)){
+        if (anotherObject.getClass() != this.getClass())
+            return false;
 
-            switch (this.unit)
-            {
-                case CentiMeter: {
-                    switch (anotherLength.unit) {
-                        case Meter:   return this.measurement == anotherLength.measurement * 100;
-                        default: return this.measurement == anotherLength.measurement;
+        Length other = (Length) anotherObject;
 
-                    }
-                }
 
-                case KiloMeter : {
-                    switch (anotherLength.unit){
-                        case Meter: return this.measurement == anotherLength.measurement * 100;
-                        default:
-                    }
-                }
-            }
 
-        }
-
-        return this.measurement == anotherLength.measurement;
-        }
+        return this.convertToCentimeter() == other.convertToCentimeter();
 
     }
+
+    private int convertToCentimeter() {
+        return unit.convertToCentimeter(this.magnitude);
+    }
+
 }

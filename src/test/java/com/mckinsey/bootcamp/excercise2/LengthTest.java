@@ -13,8 +13,8 @@ public class LengthTest {
     public void oneMeterShouldBeEqualToOneMeter() {
 
 //      Arrange
-        Length oneMeter = new Length(1, Units.Meter);
-        Length anotherOneMeter = new Length(1, Units.Meter);
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length anotherOneMeter = new Length(1, Unit.Meter);
 
 //        Assert
         assertEquals(oneMeter, anotherOneMeter);
@@ -24,8 +24,8 @@ public class LengthTest {
     public void tenMeterShouldNotBeEqualToFiveMeter() {
 
 //      Arrange
-        Length tenMeter = new Length(10, Units.Meter);
-        Length FiveMeter = new Length(5, Units.Meter);
+        Length tenMeter = new Length(10, Unit.Meter);
+        Length FiveMeter = new Length(5, Unit.Meter);
 
 //        Assert
         assertNotEquals(tenMeter, FiveMeter);
@@ -35,8 +35,8 @@ public class LengthTest {
     public void thousandMeterShouldBeEqualToOneKiloMeter() {
 
 //      Arrange
-        Length thousandMeter = new Length(1000, Units.Meter);
-        Length oneKiloMeter = new Length(1, Units.KiloMeter);
+        Length thousandMeter = new Length(1000, Unit.Meter);
+        Length oneKiloMeter = new Length(1, Unit.Kilometer);
 
 //        Assert
         assertEquals(thousandMeter, oneKiloMeter);
@@ -46,8 +46,8 @@ public class LengthTest {
     public void oneMeterShouldBeEqualToHundredCentimeter() {
 
 //      Arrange
-        Length oneMeter = new Length(1, Units.Meter);
-        Length hundredCentimeter = new Length(100, Units.CentiMeter);
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length hundredCentimeter = new Length(100, Unit.Centimeter);
 
 //        Assert
         assertEquals(oneMeter, hundredCentimeter);
