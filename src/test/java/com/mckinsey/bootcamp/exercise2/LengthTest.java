@@ -2,8 +2,7 @@ package com.mckinsey.bootcamp.exercise2;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LengthTest {
     @Test
@@ -26,5 +25,16 @@ public class LengthTest {
         boolean result = thousandMeter.equals(anotherThousandMeter);
         //assert
         assertTrue(result);
+    }
+
+    @Test
+    public void hundredCentimetersEqualsToOneMeter() {
+        //arrange
+        Length hundredCentimeters = new Length(100, "centimeters");
+        Length oneMeter = new Length(1, "meters");
+        //act
+        boolean result = hundredCentimeters.equals(oneMeter);
+        //assert
+        assertFalse(result);
     }
 }
