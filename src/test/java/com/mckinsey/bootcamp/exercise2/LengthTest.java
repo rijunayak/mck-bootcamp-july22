@@ -16,7 +16,7 @@ public class LengthTest {
 //        boolean comparisonResult = oneMeter.equals(anotherOneMeter);
 //        assertTrue(comparisonResult);
 
-        assertEquals(oneMeter,anotherOneMeter);
+        assertEquals(oneMeter, anotherOneMeter);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class LengthTest {
 //
 //        assertTrue(comparisonResult);
 
-        assertEquals(hundredMeter,anotherHundredMeter);
+        assertEquals(hundredMeter, anotherHundredMeter);
     }
 
     @Test
@@ -42,8 +42,9 @@ public class LengthTest {
 //
 //        assertFalse(comparisonResult);
 
-        assertNotEquals(hundredMeter,thousandMeter);
+        assertNotEquals(hundredMeter, thousandMeter);
     }
+
     @Test
     public void oneKilometerShouldBeEqualToOneThousandMeters() {
         Length oneKilometer = new Length(1, Unit.Kilometer);
@@ -54,7 +55,7 @@ public class LengthTest {
 //
 //            assertTrue(comparisonResult);
 
-        assertEquals(oneKilometer,oneThousandMeters);
+        assertEquals(oneKilometer, oneThousandMeters);
     }
 
     @Test
@@ -67,7 +68,7 @@ public class LengthTest {
 //
 //            assertTrue(comparisonResult);
 
-        assertEquals(oneMeter,oneHundredCentimeters);
+        assertEquals(oneMeter, oneHundredCentimeters);
     }
 
     @Test
@@ -80,8 +81,44 @@ public class LengthTest {
 //
 //            assertTrue(comparisonResult);
 
-        assertEquals(oneKilometer,oneLakhCentimeters);
+        assertEquals(oneKilometer, oneLakhCentimeters);
     }
+
+    @Test
+    public void oneMeterPlusAnotherOneMeterShouldBeEqualToTwoMeters() {
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length anotherOneMeter = new Length(1, Unit.Meter);
+
+        Length actual = oneMeter.add(anotherOneMeter);
+
+        Length expected = new Length(2,Unit.Meter);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void hundredCentimeterPlusOneMeterShouldBeEqualToTwoHundredCentimeters() {
+        Length hundredCentimeters = new Length(100, Unit.Centimeter);
+        Length oneMeter = new Length(1, Unit.Meter);
+
+        Length actual = hundredCentimeters.add(oneMeter);
+
+        Length expected = new Length(200,Unit.Centimeter);
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void fiveHundredMetersPlusOneKilometerShouldBeEqualToFifteenHundredMeters() {
+        Length fiveHundredMeters = new Length(500, Unit.Meter);
+        Length oneKilometer = new Length(1, Unit.Kilometer);
+
+        Length actual = fiveHundredMeters.add(oneKilometer);
+
+        Length expected = new Length(1500,Unit.Meter);
+
+        assertEquals(expected, actual);
+    }
+
 
 
 }
