@@ -3,7 +3,7 @@ package com.mckinsey.bootcamp.excercise2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LengthTest {
 
@@ -15,12 +15,8 @@ public class LengthTest {
         Length oneMeter = new Length(1, "meter");
         Length anotherOneMeter = new Length(1, "meter");
 
-//        Act
-        Boolean result = oneMeter.isEqual(anotherOneMeter);
-
 //        Assert
-        assertEquals(true, result);
-
+        assertEquals(oneMeter, anotherOneMeter);
     }
 
     @Test
@@ -28,13 +24,9 @@ public class LengthTest {
 
 //      Arrange
         Length tenMeter = new Length(10, "meter");
-        Length anotherFiveMeter = new Length(5, "meter");
-
-//        Act
-        Boolean result = tenMeter.isEqual(anotherFiveMeter);
+        Length FiveMeter = new Length(5, "meter");
 
 //        Assert
-        assertEquals(false, result);
-
+        assertNotEquals(tenMeter, FiveMeter);
     }
 }

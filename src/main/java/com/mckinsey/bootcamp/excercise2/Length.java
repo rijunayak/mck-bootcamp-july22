@@ -10,7 +10,9 @@ public class Length {
         this.unit = unit;
     }
 
-    public Boolean isEqual(Length other) {
-        return this.measurement == other.measurement && this.unit.equals(other.unit);
+    @Override
+    public boolean equals(Object other) {
+        Length anotherOneMeter = (Length) other;
+        return this.measurement == anotherOneMeter.measurement;
     }
 }

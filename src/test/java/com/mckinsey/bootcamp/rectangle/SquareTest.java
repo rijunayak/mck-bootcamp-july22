@@ -21,7 +21,7 @@ public class SquareTest {
     public void AreaShouldBeSixWhenSideIsThree() {
         Square square = new Square(3);
         int area = square.area();
-        Assertions.assertEquals(6, area);
+        Assertions.assertEquals(9, area);
     }
 
     @Test
