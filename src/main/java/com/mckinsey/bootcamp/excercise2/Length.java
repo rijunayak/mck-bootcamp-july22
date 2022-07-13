@@ -5,7 +5,7 @@ enum Unit {
     Meter(100),
     Kilometer(100000);
 
-    private final int conversionFactor;
+    private int conversionFactor;
 
     Unit(int conversionFactor) {
 
@@ -16,8 +16,13 @@ enum Unit {
         return conversionFactor;
     }
 
-    int convertToCentimeter(int magnitude) {
+    int convertToBase(int magnitude) {
+
         return magnitude * getConversionFactor();
+    }
+
+    int convertUnits(int magnitude, Unit actualUnit, Unit expectedUnit) {
+        return (magnitude * actualUnit.getConversionFactor()) / expectedUnit.getConversionFactor();
     }
 }
 
@@ -48,7 +53,16 @@ public class Length {
     }
 
     private int convertToCentimeter() {
-        return unit.convertToCentimeter(this.magnitude);
+
+        return unit.convertToBase(this.magnitude);
     }
 
+    private int convertUnits(Unit expectedUnit) {
+        return unit.convertUnits(this.magnitude, this.unit, expectedUnit);
+    }
+
+    public Length add(Length other) {
+        int magnitude = this.magnitude + other.convertUnits(this.unit);
+        return new Length(magnitude, this.unit);
+    }
 }

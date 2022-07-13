@@ -52,4 +52,33 @@ public class LengthTest {
 //        Assert
         assertEquals(oneMeter, hundredCentimeter);
     }
+
+    @Test
+    public void twoMeterShouldBeOneMeterPlusAnotherOneMeter() {
+
+//      Arrange
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length anotherOneMeter = new Length(1, Unit.Meter);
+
+        Length Expected = new Length(2, Unit.Meter);
+//        Act
+        Length Actual = oneMeter.add(anotherOneMeter);
+//        Assert
+        assertEquals(Expected, Actual);
+    }
+
+    @Test
+    public void twoKilometerShouldBeOneKilometerPlusThousandMeter() {
+
+//      Arrange
+        Length oneKiloMeter = new Length(1, Unit.Kilometer);
+        Length thousandMeter = new Length(1000, Unit.Meter);
+
+        Length Expected = new Length(2, Unit.Kilometer);
+//        Act
+        Length Actual = oneKiloMeter.add(thousandMeter);
+//        Assert
+        assertEquals(Expected, Actual);
+    }
+
 }
