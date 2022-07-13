@@ -1,6 +1,5 @@
-package com.mckinesy.bootcamp.rectangle;
+package com.mckinsey.bootcamp.rectangle;
 
-import com.mckinesy.bootcamp.rectangle.Rectangle;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

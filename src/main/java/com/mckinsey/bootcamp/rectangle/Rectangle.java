@@ -1,4 +1,4 @@
-package com.mckinesy.bootcamp.rectangle;
+package com.mckinsey.bootcamp.rectangle;
 
 public class Rectangle {
 
