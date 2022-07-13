@@ -10,7 +10,14 @@ public class Length{
         this.unit = unit;
     }
 
-    public boolean equals(Length other){
-        return other.magnitude == magnitude;
+
+    @Override
+    public boolean equals(Object object){
+          Length other = (Length) object;
+          return this.magnitude == other.magnitude;
     }
+
+//    public boolean equals(Length other){
+//        return other.magnitude == magnitude;
+//    }
 }
