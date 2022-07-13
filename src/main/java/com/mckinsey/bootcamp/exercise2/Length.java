@@ -14,6 +14,26 @@ public class Length{
     @Override
     public boolean equals(Object object){
           Length other = (Length) object;
+          if(this.unit == other.unit){
+              return this.magnitude == other.magnitude;
+          }
+          switch (this.unit){
+              case "meters" :
+                  this.magnitude = this.magnitude*100;
+                  break;
+
+              case "kilometers" :
+                  this.magnitude = this.magnitude*100000;
+          }
+        switch (other.unit){
+            case "meters" :
+                this.magnitude = this.magnitude*100;
+                break;
+
+            case "kilometers" :
+                this.magnitude = this.magnitude*100000;
+                break;
+        }
           return this.magnitude == other.magnitude;
     }
 

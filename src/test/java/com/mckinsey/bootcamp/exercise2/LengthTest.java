@@ -23,4 +23,14 @@ public class LengthTest {
 
         assertFalse(result);
     }
+
+    @Test
+    public void hundredCentimetersEqualsToOneMeter(){
+        Length hundredCentimeters = new Length(100,"centimeters");
+        Length meters = new Length(1,"meters");
+
+        boolean result = hundredCentimeters.equals(meters);
+
+        assertFalse(result);
+    }
 }
