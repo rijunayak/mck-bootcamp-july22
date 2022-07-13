@@ -43,4 +43,8 @@ public class Length {
     private int convertToCentimeter(){
         return unit.convertToCentimeter(this.magnitude);
     }
+
+    public Length add(Length other) {
+        return new Length(this.magnitude + other.magnitude, this.unit);
+    }
 }

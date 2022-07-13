@@ -54,7 +54,16 @@ public class LengthComparisonTest {
         assertNotEquals(oneKilometer, fiveHundredMeter);
     }
 
+    @Test
+    public void twoMetersShouldEqualAdditionOfOneMeterAndOneMeter() {
+        Length oneMeter = new Length(1, Unit.Meter);
+        Length anotherOneMeter = new Length(1, Unit.Meter);
 
+        Length actual = oneMeter.add(anotherOneMeter);
+
+        Length expected = new Length(2, Unit.Meter);
+        assertEquals(expected, actual);
+    }
 
 }
 
