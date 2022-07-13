@@ -27,4 +27,24 @@ public class ParkingLotTest {
         //Assert
         assertFalse(parkingLot.park());
     }
+
+    @Test
+    public void parkedVehicleShouldBeAbleToUnPark() {
+        //Arrange
+        ParkingLot parkingLot = new ParkingLot(5);
+        assertTrue(parkingLot.park());
+
+        //Assert
+        assertTrue(parkingLot.unPark());
+    }
+
+    @Test
+    public void shouldNotBeAbleToUnParkWhenNoVehicleIsParked() {
+        //Arrange
+        ParkingLot parkingLot = new ParkingLot(5);
+
+        //Assert
+        assertFalse(parkingLot.unPark());
+    }
+
 }
