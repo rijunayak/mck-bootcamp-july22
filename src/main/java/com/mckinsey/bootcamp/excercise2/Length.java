@@ -3,7 +3,10 @@ package com.mckinsey.bootcamp.excercise2;
 enum Unit {
     Centimeter(1),
     Meter(100),
-    Kilometer(100000);
+    Kilometer(100000),
+    Milligrams(1),
+    Grams(1000),
+    Kilograms(1000000);
 
     private int conversionFactor;
 
@@ -16,13 +19,34 @@ enum Unit {
         return conversionFactor;
     }
 
-    int convertToBase(int magnitude) {
+    int convertUnit(int magnitude, Unit other) {
 
-        return magnitude * getConversionFactor();
+        return (magnitude * getConversionFactor()) / other.getConversionFactor();
     }
 
-    int convertUnits(int magnitude, Unit actualUnit, Unit expectedUnit) {
-        return (magnitude * actualUnit.getConversionFactor()) / expectedUnit.getConversionFactor();
+    public boolean isSameQuantity(Unit firstUnit, Unit secondUnit) {
+        switch(firstUnit) {
+            case Centimeter:
+            case Meter:
+            case Kilometer: {
+                switch (secondUnit) {
+                    case Centimeter:
+                    case Meter:
+                    case Kilometer: return true;
+                }
+            }
+                break;
+            case Milligrams:
+            case Grams:
+            case Kilograms: {
+                switch (secondUnit) {
+                    case Milligrams:
+                    case Grams:
+                    case Kilograms: return true;
+                }
+            }
+        }
+        return false;
     }
 }
 
@@ -46,23 +70,27 @@ public class Length {
             return false;
 
         Length other = (Length) anotherObject;
+        if(!(this.isSameQuantity(other.unit)))
+            return false;
 
-
-        return this.convertToCentimeter() == other.convertToCentimeter();
+        return this.magnitude == other.convertUnit(this.unit);
 
     }
 
-    private int convertToCentimeter() {
-
-        return unit.convertToBase(this.magnitude);
+    private boolean isSameQuantity(Unit other) {
+        return this.unit.isSameQuantity(this.unit, other);
     }
 
-    private int convertUnits(Unit expectedUnit) {
-        return unit.convertUnits(this.magnitude, this.unit, expectedUnit);
+    private int convertUnit(Unit other) {
+
+        return unit.convertUnit(this.magnitude, other);
     }
 
     public Length add(Length other) {
-        int magnitude = this.magnitude + other.convertUnits(this.unit);
+        if(!(this.isSameQuantity(other.unit)))
+            return new Length(0, this.unit);
+
+        int magnitude = this.magnitude + other.convertUnit(this.unit);
         return new Length(magnitude, this.unit);
     }
 }
