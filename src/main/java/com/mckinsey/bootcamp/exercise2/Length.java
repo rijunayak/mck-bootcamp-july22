@@ -1,29 +1,56 @@
 package com.mckinsey.bootcamp.exercise2;
 
+enum Unit{
+    Centimeter,
+    Meter,
+    Kilometer
+}
 public class Length {
 
-    private final int magnitude;
-    private final String unit;
+    private int magnitude;
+    private final Unit unit;
 
-    public Length(int magnitude, String unit) {
-
-
+    public Length(int magnitude, Unit unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
 
-
-    /*
-    public boolean equalTo(Length anotherOneMeter) {
-
-        return this.magnitude == anotherOneMeter.magnitude && this.unit.equals(anotherOneMeter.unit);
-    }
-    */
-
-
     @Override
     public boolean equals(Object anotherObject) {
+
+        if(this == anotherObject)
+            return true;
+
+        if(anotherObject.getClass() != this.getClass())
+            return false;
+
         Length anotherLengthObject = (Length) anotherObject;
+
+
+
+        if(!(this.unit.equals(anotherLengthObject.unit)))
+        {
+            switch (this.unit)
+            {
+                case Meter:
+                    this.magnitude = this.magnitude*100;
+                    break;
+                case Kilometer:
+                    this.magnitude = this.magnitude*100000;
+                    break;
+            }
+
+            switch (anotherLengthObject.unit)
+            {
+                case Meter:
+                    anotherLengthObject.magnitude = anotherLengthObject.magnitude*100;
+                    break;
+                case Kilometer:
+                    anotherLengthObject.magnitude = anotherLengthObject.magnitude*100000;
+                    break;
+            }
+
+        }
 
         return this.magnitude == anotherLengthObject.magnitude;
     }
