@@ -5,7 +5,7 @@ enum Unit {
     Meter(100),
     Kilometer(100000);
 
-    private int conversionFactor;
+    private final int conversionFactor;
 
     Unit(int conversionFactor) {
 
@@ -41,7 +41,6 @@ public class Length {
             return false;
 
         Length other = (Length) anotherObject;
-
 
 
         return this.convertToCentimeter() == other.convertToCentimeter();

@@ -3,7 +3,7 @@ package com.mckinsey.bootcamp.excercise2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.mckinsey.bootcamp.excercise2.Length.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LengthTest {
