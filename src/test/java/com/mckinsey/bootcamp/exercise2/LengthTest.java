@@ -2,7 +2,8 @@ package com.mckinsey.bootcamp.exercise2;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class LengthTest {
@@ -11,7 +12,7 @@ public class LengthTest {
         Length oneMeter = new Length(1, Unit.Meter);
         Length anotherOneMeter = new Length(1, Unit.Meter);
 
-        assertEquals(oneMeter,anotherOneMeter);
+        assertEquals(oneMeter, anotherOneMeter);
     }
 
     @Test
@@ -19,7 +20,7 @@ public class LengthTest {
         Length hundredMeter = new Length(100, Unit.Meter);
         Length anotherHundredMeter = new Length(100, Unit.Meter);
 
-        assertEquals(hundredMeter,anotherHundredMeter);
+        assertEquals(hundredMeter, anotherHundredMeter);
     }
 
     @Test
@@ -27,14 +28,15 @@ public class LengthTest {
         Length hundredMeter = new Length(100, Unit.Meter);
         Length thousandMeter = new Length(1000, Unit.Meter);
 
-        assertNotEquals(hundredMeter,thousandMeter);
+        assertNotEquals(hundredMeter, thousandMeter);
     }
+
     @Test
     public void oneKilometerShouldBeEqualToOneThousandMeters() {
         Length oneKilometer = new Length(1, Unit.Kilometer);
         Length oneThousandMeters = new Length(1000, Unit.Meter);
 
-        assertEquals(oneKilometer,oneThousandMeters);
+        assertEquals(oneKilometer, oneThousandMeters);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class LengthTest {
         Length oneMeter = new Length(1, Unit.Meter);
         Length oneHundredCentimeters = new Length(100, Unit.Centimeter);
 
-        assertEquals(oneMeter,oneHundredCentimeters);
+        assertEquals(oneMeter, oneHundredCentimeters);
     }
 
     @Test
@@ -50,15 +52,15 @@ public class LengthTest {
         Length oneKilometer = new Length(1, Unit.Kilometer);
         Length oneLacCentimeters = new Length(100000, Unit.Centimeter);
 
-        assertEquals(oneKilometer,oneLacCentimeters);
+        assertEquals(oneKilometer, oneLacCentimeters);
     }
-    
+
     @Test
     public void twoMetersShouldBeEqualToOneMeterPlusOneMeter() {
         Length oneMeter = new Length(1, Unit.Meter);
         Length anotherOneMeter = new Length(1, Unit.Meter);
-        Length expected = oneMeter.add(anotherOneMeter);
-        Length twoMeters = new Length(2, Unit.Meter);
-        assertEquals(twoMeters, expected);
+        Length actual = oneMeter.add(anotherOneMeter);
+        Length expected = new Length(2, Unit.Meter);
+        assertEquals(expected, actual);
     }
 }

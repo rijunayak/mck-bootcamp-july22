@@ -1,9 +1,7 @@
 package com.mckinsey.bootcamp.exercise2;
 
 enum Unit {
-    Centimeter(1),
-    Meter(100),
-    Kilometer(100000);
+    Centimeter(1), Meter(100), Kilometer(100000);
 
     private int conversionFactor;
 
@@ -33,10 +31,8 @@ public class Length {
     @Override
     public boolean equals(Object anotherObject) {
 
-        if (this == anotherObject)
-            return true;
-        if (anotherObject.getClass() != this.getClass())
-            return false;
+        if (this == anotherObject) return true;
+        if (anotherObject.getClass() != this.getClass()) return false;
 
         Length other = (Length) anotherObject;
 
