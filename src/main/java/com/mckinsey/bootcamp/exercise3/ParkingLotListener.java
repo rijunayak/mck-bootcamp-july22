@@ -6,9 +6,3 @@ public interface ParkingLotListener {
 
 }
 
-class Owner implements ParkingLotListener{
-
-    public void notifyParkingLotFull(){
-
-    }
-}
