@@ -32,19 +32,43 @@ public class ParkingLotTest {
     public void parkedVehicleShouldBeAbleToUnPark() {
         //Arrange
         ParkingLot parkingLot = new ParkingLot(5);
-        assertTrue(parkingLot.park());
+        parkingLot.park();
 
         //Assert
         assertTrue(parkingLot.unPark());
     }
 
     @Test
-    public void shouldNotBeAbleToUnParkWhenNoVehicleIsParked() {
+    public void userShouldNotBeAbleToUnParkWhenNoVehicleIsParked() {
         //Arrange
         ParkingLot parkingLot = new ParkingLot(5);
 
         //Assert
         assertFalse(parkingLot.unPark());
+    }
+    @Test
+    public void ownerShouldBeNotifiedWhenTheLotBecomesFull() {
+        //Arrange
+        ParkingLot parkingLot = new ParkingLot(2);
+        parkingLot.park();
+        class Owner implements ParkingLotListener {
+            boolean isNotified = false;
+            @Override
+            public void notifyParkingLotFull() {
+                isNotified = true;
+            }
+            public boolean wasNotified() {
+                return isNotified;
+            }
+        };
+        Owner owner = new Owner();
+        parkingLot.addListener(owner);
+
+
+        //Assert
+        parkingLot.park();
+        assertTrue(owner.wasNotified());
+
     }
 
 }

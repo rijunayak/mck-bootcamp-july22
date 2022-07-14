@@ -35,12 +35,12 @@ enum Unit {
     }
 }
 
-public class Length {
+public class Measurement {
 
     private final double magnitude;
     private final Unit unit;
 
-    public Length(double magnitude, Unit unit) {
+    public Measurement(double magnitude, Unit unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
@@ -54,7 +54,7 @@ public class Length {
         if (anotherObject.getClass() != this.getClass())
             return false;
 
-        Length other = (Length) anotherObject;
+        Measurement other = (Measurement) anotherObject;
         if (!(this.unit.isSameType(other.unit)))
             return false;
 
@@ -65,11 +65,11 @@ public class Length {
         return unit.convertUnitTo(this.magnitude, other);
     }
 
-    public Length add(Length other) {
+    public Measurement add(Measurement other) {
         if (!(this.unit.isSameType(other.unit)))
-            return new Length(0, this.unit);
+            return new Measurement(0, this.unit);
 
         double magnitude = this.magnitude + other.convertUnitTo(this.unit);
-        return new Length(magnitude, this.unit);
+        return new Measurement(magnitude, this.unit);
     }
 }
