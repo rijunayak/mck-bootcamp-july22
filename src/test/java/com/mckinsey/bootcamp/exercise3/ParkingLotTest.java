@@ -17,9 +17,8 @@ public class ParkingLotTest {
     }
 
 
-
     @Test
-    public void ShouldNotParkWhenSpaceWillFull(){
+    public void ShouldNotParkWhenSpaceWillFull() {
         ParkingLot parking = new ParkingLot(1);
 
         boolean actual = parking.park();
@@ -32,7 +31,7 @@ public class ParkingLotTest {
 
 
     @Test
-    public void shouldUnParkWhenVehicleAvailable(){
+    public void shouldUnParkWhenVehicleAvailable() {
         ParkingLot parking = new ParkingLot(1);
 
         boolean actual = parking.park();
@@ -45,7 +44,7 @@ public class ParkingLotTest {
 
 
     @Test
-    public void shouldNotUnParkWhenVehicleNotAvailable(){
+    public void shouldNotUnParkWhenVehicleNotAvailable() {
         ParkingLot parking = new ParkingLot(0);
 
         boolean actual = parking.unPark();
@@ -54,7 +53,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void shouldNotUnParkWhenOneVehicleParkAndTwoVehicleTryToUnPark(){
+    public void shouldNotUnParkWhenOneVehicleParkAndTwoVehicleTryToUnPark() {
         ParkingLot parking = new ParkingLot(2);
 
         assertTrue(parking.park());
@@ -63,6 +62,50 @@ public class ParkingLotTest {
         assertFalse(parking.unPark());
     }
 
+    @Test
+    public void shouldNotifyWhenParkingLotIsFull() {
+        //Assign
+        ParkingLot parking = new ParkingLot(1);
+        class Owner implements ParkingLotListener {
+            boolean isNotified = false;
+
+            @Override
+            public void NotifyFullParkingListener() {
+                isNotified = true;
+            }
+            public boolean wasNotified() {
+                return isNotified;
+            }
+        }
+        ;
+        Owner owner = new Owner();
+        parking.AddListener(owner);
+        parking.park();
+        assertTrue(owner.wasNotified());
+    }
+
+
+    @Test
+    public void shouldNotNotifyOnParkWhenParkingLotIsNotFull() {
+        //Assign
+        ParkingLot parking = new ParkingLot(2);
+        class Owner implements ParkingLotListener {
+            boolean isNotified = false;
+
+            @Override
+            public void NotifyFullParkingListener() {
+                isNotified = true;
+            }
+            public boolean wasNotified() {
+                return isNotified;
+            }
+        }
+        ;
+        Owner owner = new Owner();
+        parking.AddListener(owner);
+        parking.park();
+        assertFalse(owner.wasNotified());
+    }
 
 
 }
