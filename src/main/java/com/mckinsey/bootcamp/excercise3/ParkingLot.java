@@ -35,8 +35,7 @@ public class ParkingLot {
 
         vehicles.add(vehicle);
 
-
-        if (parkingLotListener != null)
+        if (isFull() && parkingLotListener != null)
             notifyOwner();
 
         return true;

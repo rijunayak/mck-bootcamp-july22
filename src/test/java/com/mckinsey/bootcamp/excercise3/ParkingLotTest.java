@@ -1,6 +1,5 @@
 package com.mckinsey.bootcamp.excercise3;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +7,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParkingLotTest {
+
+
+    class TestParkingLotListener implements ParkingLotListener {
+        boolean isNotified;
+
+        @Override
+        public void notifyParkingLotFull() {
+
+            isNotified = true;
+        }
+
+        public boolean wasNotified() {
+
+            return isNotified;
+        }
+    };
 
     @Test
     @DisplayName("Parking Should be successful when lot is empty")
@@ -49,27 +64,41 @@ public class ParkingLotTest {
     public void notifyOwnerWhenParkingIsFull() {
         ParkingLot parkingLot = new ParkingLot(1);
 
-        class Owner implements ParkingLotListener {
-            boolean isNotified;
 
-            @Override
-            public void notifyParkingLotFull() {
-                isNotified = true;
-            }
+        TestParkingLotListener testParkingLotListener = new TestParkingLotListener();
+        parkingLot.addListener(testParkingLotListener);
 
-            public boolean wasNotified() {
-                return isNotified;
-            }
-        }
-        ;
-        Owner owner = new Owner();
+        Object vehicle = new Object();
+        parkingLot.park(vehicle);
+
+        assertTrue(testParkingLotListener.wasNotified());
+    }
+
+    @Test
+    public void shouldNotNotifyWhenParkingIsNotFull() {
+        ParkingLot parkingLot = new ParkingLot(2);
+
+        TestParkingLotListener owner = new TestParkingLotListener();
+
         parkingLot.addListener(owner);
 
         Object vehicle = new Object();
         parkingLot.park(vehicle);
 
-        assertTrue(owner.wasNotified());
+        assertFalse(owner.wasNotified());
     }
 
+    @Test
+    public void shouldNotifyTrafficPoliceWhenParkingIsFull() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        TestParkingLotListener trafficPolice = new TestParkingLotListener();
+
+        parkingLot.addListener(trafficPolice);
+
+        Object vehicle = new Object();
+        parkingLot.park(vehicle);
+
+        assertTrue(trafficPolice.wasNotified());
+    }
 
 }
