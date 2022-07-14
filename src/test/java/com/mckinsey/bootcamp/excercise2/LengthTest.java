@@ -94,6 +94,17 @@ public class LengthTest {
     }
 
     @Test
+    public void twentyLakhMilligramShouldBeEqualToTwoKilogram() {
+
+//      Arrange
+        Length twentyLakhMilligram = new Length(2000000, Unit.Milligrams);
+        Length twoKilogram = new Length(2, Unit.Kilograms);
+
+//      Assert
+        assertEquals(twentyLakhMilligram, twoKilogram);
+    }
+
+    @Test
     public void fifteenHundredGramShouldBeFiveHundredGramPlusOneKilogram() {
 
 //      Arrange
@@ -123,5 +134,18 @@ public class LengthTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void onePointFiveKiloGramShouldBeOneKiloGramPlusThreeHundredGram() {
 
+//      Arrange
+        Length oneKiloGram = new Length(1, Unit.Kilograms);
+        Length threeHundredGram = new Length(300, Unit.Grams);
+
+//      Act
+        Length actual = oneKiloGram.add(threeHundredGram);
+
+        Length expected = new Length(1.3, Unit.Kilograms);
+//        Assert
+        assertEquals(expected, actual);
+    }
 }

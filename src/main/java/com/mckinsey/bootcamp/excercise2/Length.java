@@ -1,61 +1,46 @@
 package com.mckinsey.bootcamp.excercise2;
 
+enum UnitType {
+    Length,
+    Weight
+}
+
 enum Unit {
-    Centimeter(1),
-    Meter(100),
-    Kilometer(100000),
-    Milligrams(1),
-    Grams(1000),
-    Kilograms(1000000);
+    Centimeter(1, UnitType.Length),
+    Meter(100, UnitType.Length),
+    Kilometer(100000, UnitType.Length),
+    Milligrams(1, UnitType.Weight),
+    Grams(1000, UnitType.Weight),
+    Kilograms(1000000, UnitType.Weight);
 
     private int conversionFactor;
+    private UnitType type;
 
-    Unit(int conversionFactor) {
+    Unit(int conversionFactor, UnitType type) {
 
         this.conversionFactor = conversionFactor;
+        this.type = type;
     }
 
     public int getConversionFactor() {
         return conversionFactor;
     }
 
-    int convertUnit(int magnitude, Unit other) {
-
+    double convertUnitTo(double magnitude, Unit other) {
         return (magnitude * getConversionFactor()) / other.getConversionFactor();
     }
 
-    public boolean isSameQuantity(Unit firstUnit, Unit secondUnit) {
-        switch(firstUnit) {
-            case Centimeter:
-            case Meter:
-            case Kilometer: {
-                switch (secondUnit) {
-                    case Centimeter:
-                    case Meter:
-                    case Kilometer: return true;
-                }
-            }
-                break;
-            case Milligrams:
-            case Grams:
-            case Kilograms: {
-                switch (secondUnit) {
-                    case Milligrams:
-                    case Grams:
-                    case Kilograms: return true;
-                }
-            }
-        }
-        return false;
+    public boolean isSameType(Unit other) {
+        return this.type == other.type;
     }
 }
 
 public class Length {
 
-    private final int magnitude;
+    private final double magnitude;
     private final Unit unit;
 
-    public Length(int magnitude, Unit unit) {
+    public Length(double magnitude, Unit unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
@@ -70,27 +55,21 @@ public class Length {
             return false;
 
         Length other = (Length) anotherObject;
-        if(!(this.isSameQuantity(other.unit)))
+        if (!(this.unit.isSameType(other.unit)))
             return false;
 
-        return this.magnitude == other.convertUnit(this.unit);
-
+        return this.magnitude == other.convertUnitTo(this.unit);
     }
 
-    private boolean isSameQuantity(Unit other) {
-        return this.unit.isSameQuantity(this.unit, other);
-    }
-
-    private int convertUnit(Unit other) {
-
-        return unit.convertUnit(this.magnitude, other);
+    private double convertUnitTo(Unit other) {
+        return unit.convertUnitTo(this.magnitude, other);
     }
 
     public Length add(Length other) {
-        if(!(this.isSameQuantity(other.unit)))
+        if (!(this.unit.isSameType(other.unit)))
             return new Length(0, this.unit);
 
-        int magnitude = this.magnitude + other.convertUnit(this.unit);
+        double magnitude = this.magnitude + other.convertUnitTo(this.unit);
         return new Length(magnitude, this.unit);
     }
 }
