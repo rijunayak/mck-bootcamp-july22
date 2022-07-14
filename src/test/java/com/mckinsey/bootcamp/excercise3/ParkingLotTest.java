@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParkingLotTest {
 
-
     class TestParkingLotListener implements ParkingLotListener {
         boolean isNotified;
 
@@ -58,7 +57,6 @@ public class ParkingLotTest {
 
         assertTrue(parkinglot.unPark(vehicle));
     }
-//    ParkingLotListener parkingLotListener = new owner();
 
     @Test
     public void notifyOwnerWhenParkingIsFull() {
@@ -89,16 +87,21 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void shouldNotifyTrafficPoliceWhenParkingIsFull() {
+    public void shouldNotifyTrafficPoliceAndOwnerWhenParkingIsFull() {
         ParkingLot parkingLot = new ParkingLot(1);
-        TestParkingLotListener trafficPolice = new TestParkingLotListener();
 
+        TestParkingLotListener trafficPolice = new TestParkingLotListener();
+        TestParkingLotListener owner = new TestParkingLotListener();
+
+        parkingLot.addListener(owner);
         parkingLot.addListener(trafficPolice);
 
         Object vehicle = new Object();
         parkingLot.park(vehicle);
 
+        assertTrue(owner.wasNotified());
         assertTrue(trafficPolice.wasNotified());
     }
+
 
 }

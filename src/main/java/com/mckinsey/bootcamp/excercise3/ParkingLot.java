@@ -1,12 +1,14 @@
 package com.mckinsey.bootcamp.excercise3;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingLot {
 
-    private final int capacity;
+    private int capacity;
     private ArrayList<Object> vehicles = new ArrayList<>();
-    ParkingLotListener parkingLotListener = null;
+    private List<ParkingLotListener> listeners = new ArrayList();
+//    ParkingLotListener parkingLotListener = null;
 
     public ParkingLot(int capacity) {
 
@@ -35,14 +37,14 @@ public class ParkingLot {
 
         vehicles.add(vehicle);
 
-        if (isFull() && parkingLotListener != null)
-            notifyOwner();
+        if (isFull())
+            notifyListeners();
 
         return true;
     }
 
-    private void notifyOwner() {
-        parkingLotListener.notifyParkingLotFull();
+    private void notifyListeners() {
+        listeners.forEach(ParkingLotListener :: notifyParkingLotFull);
     }
 
 
@@ -63,6 +65,10 @@ public class ParkingLot {
 
 
     public void addListener(ParkingLotListener parkingLotListener) {
-        this.parkingLotListener = parkingLotListener;
+        this.listeners.add(parkingLotListener);
+    }
+
+    public boolean attendantPark(Object vehicle) {
+        return false;
     }
 }
