@@ -7,6 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParkingLotTest {
 
+    class TestParkingLotListener implements ParkingLotListener {
+        boolean isNotified = false;
+
+        @Override
+        public void NotifyFullParkingListener() {
+            isNotified = true;
+        }
+
+        public boolean wasNotified() {
+            return isNotified;
+        }
+    }
+
+    ;
+
     @Test
     public void ShouldBeParkWhenSpaceWillAvailable() {
         ParkingLot parking = new ParkingLot(1);
@@ -66,20 +81,8 @@ public class ParkingLotTest {
     public void shouldNotifyWhenParkingLotIsFull() {
         //Assign
         ParkingLot parking = new ParkingLot(1);
-        class Owner implements ParkingLotListener {
-            boolean isNotified = false;
-
-            @Override
-            public void NotifyFullParkingListener() {
-                isNotified = true;
-            }
-            public boolean wasNotified() {
-                return isNotified;
-            }
-        }
-        ;
-        Owner owner = new Owner();
-        parking.AddListener(owner);
+        TestParkingLotListener owner = new TestParkingLotListener();
+        parking.addListener(owner);
         parking.park();
         assertTrue(owner.wasNotified());
     }
@@ -89,22 +92,32 @@ public class ParkingLotTest {
     public void shouldNotNotifyOnParkWhenParkingLotIsNotFull() {
         //Assign
         ParkingLot parking = new ParkingLot(2);
-        class Owner implements ParkingLotListener {
-            boolean isNotified = false;
-
-            @Override
-            public void NotifyFullParkingListener() {
-                isNotified = true;
-            }
-            public boolean wasNotified() {
-                return isNotified;
-            }
-        }
-        ;
-        Owner owner = new Owner();
-        parking.AddListener(owner);
+        TestParkingLotListener owner = new TestParkingLotListener();
+        parking.addListener(owner);
         parking.park();
         assertFalse(owner.wasNotified());
+    }
+    @Test
+    public void shouldNotNotifyOnParkWhenParkingLotIsEmpty() {
+        //Assign
+        ParkingLot parking = new ParkingLot(2);
+        TestParkingLotListener owner = new TestParkingLotListener();
+        parking.addListener(owner);
+        assertFalse(owner.wasNotified());
+    }
+    @Test
+    public void shouldNotifyToTrafficPoliceAndOwnerWhenParkingLotIsFull() {
+        //Assign
+        ParkingLot parking = new ParkingLot(1);
+        TestParkingLotListener owner = new TestParkingLotListener();
+        TestParkingLotListener trafficPolice = new TestParkingLotListener();
+        parking.addListener(owner);
+        parking.addListener(trafficPolice);
+
+        parking.park();
+
+        assertTrue(owner.wasNotified());
+        assertTrue(trafficPolice.wasNotified());
     }
 
 
