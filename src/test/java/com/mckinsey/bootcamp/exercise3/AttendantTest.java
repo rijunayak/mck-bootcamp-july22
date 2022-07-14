@@ -35,5 +35,21 @@ public class AttendantTest {
         assertFalse(attendant.park(carTwo));
     }
 
+    @Test
+    public void attendantShouldBeAbleToParkInMultipleParkingLot () {
+        ParkingLot parkingLotOne = new ParkingLot(1);
+        ParkingLot parkingLotTwo = new ParkingLot(1);
+        Attendant attendant = new Attendant();
+        attendant.manageParkingLot(parkingLotOne);
+        attendant.manageParkingLot(parkingLotTwo);
+        Object carOne = new Object();
+        Object carTwo = new Object();
+
+        //Act
+        assertTrue(attendant.park(carOne));
+
+        //Assert
+        assertTrue(attendant.park(carTwo));
+    }
 
 }
