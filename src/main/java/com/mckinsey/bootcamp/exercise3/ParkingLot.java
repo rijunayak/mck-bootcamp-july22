@@ -6,7 +6,10 @@ public class ParkingLot {
     private final int capacity;
     ArrayList<Integer> parking = new ArrayList<>();
 
+    ParkingLotListener parkingLotListener = null;
     //private int lotsOccupied;
+
+
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
@@ -25,8 +28,15 @@ public class ParkingLot {
 
         parking.add(objectID);
 
+        if(parkingLotListener != null)
+            notifyOwner();
+
         return true;
 
+    }
+
+    private void notifyOwner() {
+        parkingLotListener.notifyParkingLotFull();
     }
 
     public boolean unPark(Object object) {
@@ -40,7 +50,11 @@ public class ParkingLot {
 
     }
 
-    private boolean isFull() {
+    public boolean isFull() {
         return parking.size() == capacity;
+    }
+
+    public void addListener(ParkingLotListener parkingLotListener) {
+        this.parkingLotListener = parkingLotListener;
     }
 }

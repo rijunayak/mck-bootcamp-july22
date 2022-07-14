@@ -19,10 +19,11 @@ public class ParkingLotTest {
     @Test
     public void parkingShouldBeUnSuccessfulWhenLotIsNotEmpty() {
         ParkingLot parkingLot = new ParkingLot(1);
+        Object carOne = new Object();
+        parkingLot.Park(carOne);
+        Object carTwo = new Object();
 
-        boolean carOneResult = parkingLot.Park(new Object());
-
-        boolean carTwoResult = parkingLot.Park(new Object());
+        boolean carTwoResult = parkingLot.Park(carTwo);
 
         assertFalse(carTwoResult);
     }
@@ -30,16 +31,37 @@ public class ParkingLotTest {
     @Test
     public void unParkingShouldBeSuccessfulWhenVehicleIsParked() {
         ParkingLot parkingLot = new ParkingLot(1);
-
         Object carOne = new Object();
-
-        boolean carOneParkingResult = parkingLot.Park(carOne);
+        parkingLot.Park(carOne);
 
         boolean carOneUnParkingResult = parkingLot.unPark(carOne);
 
-        assertTrue(carOneParkingResult);
         assertTrue(carOneUnParkingResult);
     }
 
+    @Test
+    public void shouldNotifyWhenParkingLotFull(){
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        class Owner implements  ParkingLotListener {
+            boolean isNotified;
+            @Override
+            public void notifyParkingLotFull() {
+                    isNotified = true;
+            }
+            public boolean wasNotified(){
+                return isNotified;
+            }
+        };
+        Owner owner = new Owner();
+        parkingLot.addListener(owner);
+
+        Object carOne = new Object();
+        parkingLot.Park(carOne);
+
+        assertTrue(owner.wasNotified());
+
+
+    }
 
 }
