@@ -31,6 +31,9 @@ enum Unit {
         return (distanceUnits.contains(unit1) && distanceUnits.contains(unit2)) || (weightUnits.contains(unit1) && weightUnits.contains(unit2));
 
     }
+    public  static double addMetric(Metric firstMetric , Metric secondMetric){
+        return firstMetric.convertToBase() + secondMetric.convertToBase();
+    }
 }
 
 public class Metric {
@@ -62,6 +65,6 @@ public class Metric {
         if (!unit.isAdditionPossible(this.unit, other.unit)) {
             return new Metric(-1, this.unit);
         }
-        return new Metric((this.convertToBase() + other.convertToBase()) / this.unit.getConversionFactor(), this.unit);
+        return new Metric(Unit.addMetric(this,other)/this.unit.getConversionFactor(), this.unit);
     }
 }
