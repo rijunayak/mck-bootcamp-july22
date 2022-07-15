@@ -6,7 +6,7 @@ import java.util.List;
 public class ParkingLot {
 
     private int capacity;
-    private int occupiedSlots = 0;
+    private ArrayList<Object> parkedCar = new ArrayList<Object>();
     private List<ParkingLotListener> ListListeners = new ArrayList<ParkingLotListener>();
 
     public ParkingLot(int capacity) {
@@ -15,9 +15,9 @@ public class ParkingLot {
     }
 
 
-    public boolean park() {
-        if (this.occupiedSlots != capacity) {
-            this.occupiedSlots++;
+    public boolean park(Object car) {
+        if (this.parkedCar.size() != capacity) {
+            this.parkedCar.add(car);
             if (ListListeners != null) {
                 if (isFull())
                     this.notifyListeners();
@@ -33,22 +33,26 @@ public class ParkingLot {
     }
 
 
-    public boolean unPark() {
-        if (this.occupiedSlots == 0)
+    public boolean unPark(Object car) {
+        if (this.parkedCar.size() == 0)
             return false;
         else
-            this.occupiedSlots--;
+            this.parkedCar.remove(car);
         return true;
     }
 
 
     public boolean isFull() {
-        return this.occupiedSlots == this.capacity;
+        return this.parkedCar.size() == this.capacity;
     }
 
 
     public void addListener(ParkingLotListener parkingLotListener) {
 
         this.ListListeners.add(parkingLotListener);
+    }
+
+    public boolean parkByAttendant() {
+        return false;
     }
 }

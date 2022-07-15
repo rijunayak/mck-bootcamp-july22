@@ -25,8 +25,8 @@ public class ParkingLotTest {
     @Test
     public void ShouldBeParkWhenSpaceWillAvailable() {
         ParkingLot parking = new ParkingLot(1);
-
-        boolean actual = parking.park();
+        Object maruti = new Object();
+        boolean actual = parking.park(maruti);
 
         assertTrue(actual);
     }
@@ -35,11 +35,12 @@ public class ParkingLotTest {
     @Test
     public void ShouldNotParkWhenSpaceWillFull() {
         ParkingLot parking = new ParkingLot(1);
-
-        boolean actual = parking.park();
-
+        Object maruti = new Object();
+        boolean actual = parking.park(maruti);
         assertTrue(actual);
-        actual = parking.park();
+
+        Object ford = new Object();
+        actual = parking.park(ford);
 
         assertFalse(actual);
     }
@@ -48,11 +49,11 @@ public class ParkingLotTest {
     @Test
     public void shouldUnParkWhenVehicleAvailable() {
         ParkingLot parking = new ParkingLot(1);
-
-        boolean actual = parking.park();
+        Object maruti = new Object();
+        boolean actual = parking.park(maruti);
 
         assertTrue(actual);
-        actual = parking.unPark();
+        actual = parking.unPark(maruti);
 
         assertTrue(actual);
     }
@@ -62,7 +63,8 @@ public class ParkingLotTest {
     public void shouldNotUnParkWhenVehicleNotAvailable() {
         ParkingLot parking = new ParkingLot(0);
 
-        boolean actual = parking.unPark();
+        Object maruti = new Object();
+        boolean actual = parking.unPark(maruti);
 
         assertFalse(actual);
     }
@@ -70,11 +72,12 @@ public class ParkingLotTest {
     @Test
     public void shouldNotUnParkWhenOneVehicleParkAndTwoVehicleTryToUnPark() {
         ParkingLot parking = new ParkingLot(2);
+        Object maruti = new Object();
+        assertTrue(parking.park(maruti));
+        assertTrue(parking.unPark(maruti));
 
-        assertTrue(parking.park());
-        assertTrue(parking.unPark());
-
-        assertFalse(parking.unPark());
+        Object ford = new Object();
+        assertFalse(parking.unPark(ford));
     }
 
     @Test
@@ -83,7 +86,8 @@ public class ParkingLotTest {
         ParkingLot parking = new ParkingLot(1);
         TestParkingLotListener owner = new TestParkingLotListener();
         parking.addListener(owner);
-        parking.park();
+        Object maruti = new Object();
+        parking.park(maruti);
         assertTrue(owner.wasNotified());
     }
 
@@ -94,7 +98,9 @@ public class ParkingLotTest {
         ParkingLot parking = new ParkingLot(2);
         TestParkingLotListener owner = new TestParkingLotListener();
         parking.addListener(owner);
-        parking.park();
+
+        Object maruti = new Object();
+        parking.park(maruti);
         assertFalse(owner.wasNotified());
     }
     @Test
@@ -114,11 +120,13 @@ public class ParkingLotTest {
         parking.addListener(owner);
         parking.addListener(trafficPolice);
 
-        parking.park();
+        Object maruti = new Object();
+        parking.park(maruti);
 
         assertTrue(owner.wasNotified());
         assertTrue(trafficPolice.wasNotified());
     }
+
 
 
 }
