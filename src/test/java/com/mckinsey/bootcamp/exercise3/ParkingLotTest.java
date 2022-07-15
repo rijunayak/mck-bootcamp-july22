@@ -96,4 +96,6 @@ public class ParkingLotTest {
         assertTrue(trafficPolice.wasNotified());
 
     }
+
+
 }
